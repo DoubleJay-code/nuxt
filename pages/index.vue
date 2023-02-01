@@ -2,7 +2,7 @@
   <div>
     <Navbar/>
     <main class="main">
-      <h1>Hello Nuxt</h1>
+      <h1>Home page with any content</h1>
     </main>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 }
 .main {
   max-width: 1000px;
-  margin: 0 auto;
-  background: lightblue;
+  margin: 30px auto;
+  text-align: center;
 }
 </style>

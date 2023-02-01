@@ -41,19 +41,24 @@ export default defineComponent ({
         await fetch('https://6082e3545dbd2c001757abf5.mockapi.io/qtim-test-work/posts')
           .then(data => data.json())
           .then((json: Post[]) => {
-            this.allPosts = json.reverse()
-            this.postsOnPage = json.slice(((this.page * this.limit) - this.limit), (this.page * this.limit))
-          })
-        this.totalPages = Math.ceil(this.allPosts.length / this.limit)
+              this.postsOnPage = json
+                .reverse()
+                .slice(((this.page * this.limit) - this.limit), (this.page * this.limit))
+              this.totalPages = Math.ceil(json.length / this.limit)
+            }
+          )
       } catch (error) {
         alert(error);
       }
     },
     changePage(pag: number) {
       this.page = pag
+      localStorage.setItem('page', String(pag))
+      this.fetchPosts()
     },
   },
   mounted() {
+    this.page = Number(localStorage.getItem('page'))
     this.fetchPosts()
   }
 })
@@ -67,7 +72,7 @@ export default defineComponent ({
 }
 .post-list {
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 30px auto;
   padding: 10px;
   display: flex;
   justify-content: space-between;
