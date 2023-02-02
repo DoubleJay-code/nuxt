@@ -30,14 +30,17 @@ export const mutations = {
     state.allPosts = posts;
   },
   setPostsOnPage(state: State) {
-    state.postsOnPage = state.allPosts.slice(((state.page * state.limit) - state.limit), (state.limit * state.page))
+    const { page, limit } = state;
+    const end: number = page * limit;
+    const start: number = (page * limit) - limit;
+    state.postsOnPage = state.allPosts.slice(start, end)
   },
   setTotalPages(state: State, posts: Post[]) {
     state.totalPages = Math.ceil(posts.length / state.limit)
   },
-  changePage(state: State, num: number) {
-    state.page = num
-    localStorage.setItem('page', String(num))
+  changePage(state: State, page: number) {
+    state.page = page
+    localStorage.setItem('page', String(page))
     state.postsOnPage = state.allPosts
       .slice(((state.page * state.limit) - state.limit), (state.page * state.limit))
   },

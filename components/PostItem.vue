@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import {defineComponent, PropType} from 'vue'
-import {Post} from "~/pages/onepost/_id.vue";
+import {Post} from "~/store";
 
 export default defineComponent({
   props: {
@@ -24,7 +24,7 @@ export default defineComponent({
   },
   methods: {
     openPost(id: string) {
-      this.$router.push('/onepost/' + id)
+      this.$router.push('/post/' + id)
     }
   }
 })
