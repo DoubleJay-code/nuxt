@@ -41,9 +41,9 @@ export default defineComponent ({
         await fetch('https://6082e3545dbd2c001757abf5.mockapi.io/qtim-test-work/posts')
           .then(data => data.json())
           .then((json: Post[]) => {
+              this.allPosts = json.reverse()
               this.postsOnPage = json
-                .reverse()
-                .slice(((this.page * this.limit) - this.limit), (this.page * this.limit))
+                .slice(0, this.limit)
               this.totalPages = Math.ceil(json.length / this.limit)
             }
           )
@@ -54,7 +54,8 @@ export default defineComponent ({
     changePage(pag: number) {
       this.page = pag
       localStorage.setItem('page', String(pag))
-      this.fetchPosts()
+      this.postsOnPage = this.allPosts
+        .slice(((this.page * this.limit) - this.limit), (this.page * this.limit))
     },
   },
   mounted() {
@@ -94,3 +95,9 @@ export default defineComponent ({
   border: 2px solid orange;
 }
 </style>
+
+
+<!--this.postsOnPage = json-->
+<!--.reverse()-->
+<!--.slice(((this.page * this.limit) - this.limit), (this.page * this.limit))-->
+<!--this.totalPages = Math.ceil(json.length / this.limit)-->

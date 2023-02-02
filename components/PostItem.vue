@@ -15,11 +15,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import {defineComponent, PropType} from 'vue'
+import {Post} from "~/pages/onepost/_id.vue";
 
 export default defineComponent({
   props: {
-    post: Object,
+    post: Object as PropType<Post>,
   },
   methods: {
     openPost(id: string) {
