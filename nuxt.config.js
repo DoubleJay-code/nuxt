@@ -29,7 +29,6 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    'nuxt-vuex-localstorage',
     '@nuxtjs/pwa',
   ],
 
